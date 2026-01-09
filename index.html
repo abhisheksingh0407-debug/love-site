@@ -1,20 +1,20 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Only You ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   overflow:hidden;
-  font-family:'Quicksand',sans-serif;
+  font-family:'Poppins',sans-serif;
 }
 
-/* PAGE */
+/* PAGES */
 .page{
   width:100vw;
   height:100vh;
@@ -24,191 +24,68 @@ body{
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  padding:25px;
+  padding:30px;
   text-align:center;
-  transition:transform 0.8s ease;
 }
 .page.active{display:flex;}
 
-/* BACKGROUNDS */
-.page1{background:linear-gradient(135deg,#ffafbd,#ffc3a0);}
-.page2{background:linear-gradient(135deg,#cdb4db,#ffc8dd);}
-.page3{background:linear-gradient(135deg,#ff758f,#ffb3c6);}
+.page1{background:linear-gradient(135deg,#ffb3c6,#ffd6e0);}
+.page2{background:linear-gradient(135deg,#cdb4db,#eac4d5);}
+.page3{background:linear-gradient(135deg,#ff8fab,#ffc2d1);}
 
-/* GLOW TEXT */
+/* TEXT */
 h1{
   font-family:'Pacifico',cursive;
-  font-size:3rem;
-  margin-bottom:20px;
+  font-size:3.2rem;
   color:white;
-  text-shadow:0 0 15px #fff,0 0 30px #ff4d6d;
-  animation:glow 2s infinite alternate;
-}
-@keyframes glow{
-  from{ text-shadow:0 0 10px #fff;}
-  to{ text-shadow:0 0 25px #ff4d6d;}
+  margin-bottom:25px;
+  z-index:5;
 }
 
-/* TYPING */
-.typing{
-  font-size:1.35rem;
+.text{
+  font-size:1.2rem;
   line-height:1.9;
-  max-width:95%;
   color:white;
+  max-width:90%;
+  z-index:5;
 }
 
 /* BUTTON */
 button{
-  margin-top:35px;
-  padding:14px 36px;
+  margin-top:40px;
+  padding:14px 38px;
   border:none;
   border-radius:30px;
   font-size:1.1rem;
-  font-weight:700;
+  font-weight:600;
   background:white;
   color:#ff4d6d;
-  box-shadow:0 10px 25px rgba(0,0,0,.3);
+  z-index:5;
 }
 
-/* FLOATING HEARTS */
+/* FLOATING HEARTS (LIGHT & BACK) */
 .heart{
   position:absolute;
-  font-size:1.5rem;
+  font-size:1.4rem;
+  opacity:0.25;
   animation:floatUp linear infinite;
-  opacity:0.7;
+  z-index:1;
 }
 @keyframes floatUp{
   from{transform:translateY(110vh);}
   to{transform:translateY(-10vh);}
 }
 
-/* EMOJI DECOR */
-.decor{
+/* SIDE EMOJIS */
+.side{
   position:absolute;
   font-size:2rem;
-  opacity:0.85;
+  opacity:0.35;
+  z-index:1;
 }
 
-/* SURPRISE POPUP */
+/* POPUP */
 #popup{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:99;
-}
-#popup div{
-  background:white;
-  padding:30px;
-  border-radius:20px;
-  text-align:center;
-  animation:scaleIn 0.6s ease;
-}
-@keyframes scaleIn{
-  from{transform:scale(0);}
-  to{transform:scale(1);}
-}
-</style>
-</head>
-
-<body>
-
-<!-- MUSIC -->
-<audio id="music" autoplay loop>
-  <source src="https://cdn.pixabay.com/audio/2023/05/21/audio_dae69e68d7.mp3">
-</audio>
-
-<!-- TYPING SOUND -->
-<audio id="typeSound">
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b3e74.mp3">
-</audio>
-
-<!-- PAGE 1 -->
-<div class="page page1 active">
-  <h1>Hey Dodo ❤️</h1>
-  <p id="text1" class="typing"></p>
-  <button onclick="goPage(2)">Continue 💖</button>
-</div>
-
-<!-- PAGE 2 -->
-<div class="page page2">
-  <h1>Always You 💕</h1>
-  <p id="text2" class="typing"></p>
-  <button onclick="goPage(3)">One More 🧸</button>
-</div>
-
-<!-- PAGE 3 -->
-<div class="page page3">
-  <h1>Forever ❤️</h1>
-  <p id="text3" class="typing"></p>
-</div>
-
-<!-- POPUP -->
-<div id="popup">
-  <div>
-    <h2>💝 Surprise 💝</h2>
-    <p>You are my forever… today, tomorrow, always 🧸❤️</p>
-  </div>
-</div>
-
-<script>
-const texts={
-1:"Thank you for everything... for your love, care, patience and constant support. Even when things were hard, even when I wasn't perfect... you never gave up on me. And that means more to me than words can ever express ❤️",
-2:"I truly appreciate everything you do for me... the care, the small efforts, the love you show every single day. I'm sorry for the moments when things went wrong recently. I've realized my mistakes, learned from them, and I promise to be better... for us ❤️",
-3:"I promise to stand by you, to love you, care for you, and support you no matter what life brings. Thank you for believing in us, for holding my hand even when I faltered. I will never give up on you... not today, not ever ❤️"
-};
-
-function typeText(el,text){
-  el.innerHTML="";
-  let i=0;
-  let sound=document.getElementById("typeSound");
-  let interval=setInterval(()=>{
-    el.innerHTML+=text[i];
-    sound.currentTime=0;
-    sound.play();
-    i++;
-    if(i>=text.length){
-      clearInterval(interval);
-      sound.pause();
-      if(el.id==="text3"){
-        setTimeout(()=>document.getElementById("popup").style.display="flex",1200);
-      }
-    }
-  },35);
-}
-
-typeText(text1,texts[1]);
-
-function goPage(n){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.querySelector(".page"+n).classList.add("active");
-  typeText(document.getElementById("text"+n),texts[n]);
-  document.getElementById("music").play();
-}
-
-/* HEARTS */
-for(let i=0;i<45;i++){
-  let h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="💖";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=(6+Math.random()*6)+"s";
-  document.body.appendChild(h);
-}
-
-/* EMOJIS */
-const emojis=["🧸","🐼","💕","💖","💝"];
-for(let i=0;i<25;i++){
-  let d=document.createElement("div");
-  d.className="decor";
-  d.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-  d.style.left=Math.random()*100+"vw";
-  d.style.top=Math.random()*100+"vh";
-  document.body.appendChild(d);
-}
-</script>
-
-</body>
-  </html>
+  background 
